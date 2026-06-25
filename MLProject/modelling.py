@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 import mlflow
 
 def main():
-    mlflow.autolog()
+    mlflow.autolog(log_models=True)
     
     X_train = pd.read_csv("solana_forensic_preprocessing/X_train.csv")
     y_train = pd.read_csv("solana_forensic_preprocessing/y_train.csv")

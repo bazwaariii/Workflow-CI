@@ -29,7 +29,7 @@ jobs:
         id: get_run
         run: |
           cd MLProject
-          RUN_ID=$(ls mlruns/0 | grep -v meta.yaml | head -n 1)
+          RUN_ID=$(python -c "import mlflow; runs=mlflow.search_runs(experiment_ids=['0']); print(runs[runs['tags.mlflow.log-model.history'].notnull()].iloc[0].run_id if 'tags.mlflow.log-model.history' in runs.columns else runs.iloc[0].run_id)")
           echo "run_id=${RUN_ID}" >> $GITHUB_OUTPUT
           
       - name: Build Docker Image
